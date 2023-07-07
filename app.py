@@ -121,9 +121,9 @@ if selected == 'EDA':
     if st.sidebar.checkbox('**Basic Information**'):
         # Basic Information
         if st.checkbox(':blue[Data Information]'):
-            image_1 = Image.open('C:/Users/TrungHieu/Desktop/AI4E/Final Report/image/Data Dictionary.png')
+            image_1 = Image.open('Data Dictionary.png')
             st.image(image_1)
-            image_2 = Image.open('C:/Users/TrungHieu/Desktop/AI4E/Final Report/image/Variable notes.png')
+            image_2 = Image.open('Variable notes.png')
             st.image(image_2)
         if st.checkbox(":blue[Show Raw Data]", False):
            st.subheader('Raw data')
