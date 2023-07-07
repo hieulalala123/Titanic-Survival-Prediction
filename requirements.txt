@@ -7,4 +7,4 @@ Pillow
 scikit-learn
 streamlit-lottie
 streamlit
-
+streamlit-option-menu
