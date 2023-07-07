@@ -19,6 +19,31 @@ import streamlit as st # pip install streamlit
 from streamlit_lottie import st_lottie # pip install streamlit-lottie
 from streamlit_option_menu import option_menu as om 
 import pickle
+############# Setting streamlit for users ####
+
+try:
+    # Streamlit < 0.65
+    from streamlit.ReportThread import get_report_ctx
+
+except ModuleNotFoundError:
+    try:
+        # Streamlit > 0.65
+        from streamlit.report_thread import get_report_ctx
+
+    except ModuleNotFoundError:
+        try:
+            # Streamlit > ~1.3
+            from streamlit.script_run_context import get_script_run_ctx as get_report_ctx
+
+        except ModuleNotFoundError:
+            try:
+                # Streamlit > ~1.8
+                from streamlit.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
+
+            except ModuleNotFoundError:
+                # Streamlit > ~1.12
+                from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
+                
 #############
 
 st.set_page_config(layout = 'wide')
