@@ -4,7 +4,7 @@ pandas
 matplotlib
 plotly
 Pillow
-scikit-learn
+scikit-learn == 1.3.0
 streamlit-lottie
 streamlit
 streamlit-option-menu
