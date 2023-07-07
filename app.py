@@ -27,7 +27,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #=============Function to filter DataFrame=======================
 
-@st.cache_resource(experimental_allow_widgets=True)
+# @st.cache_resource(experimental_allow_widgets=True)
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     modify = st.checkbox("Add filters")
     if not modify:
