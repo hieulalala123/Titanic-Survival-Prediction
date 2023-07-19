@@ -19,6 +19,7 @@ import streamlit as st # pip install streamlit
 from streamlit_lottie import st_lottie # pip install streamlit-lottie
 from streamlit_option_menu import option_menu as om 
 import pickle
+
 ############# Setting streamlit for users ####
 
 try:
@@ -146,9 +147,9 @@ if selected == 'EDA':
     if st.sidebar.checkbox('**Basic Information**'):
         # Basic Information
         if st.checkbox(':blue[Data Information]'):
-            image_1 = Image.open('Data Dictionary.png')
+            image_1 = Image.open('C:/Users/TrungHieu/Desktop/AI4E/Final Report/image/Data Dictionary.png')
             st.image(image_1)
-            image_2 = Image.open('Variable notes.png')
+            image_2 = Image.open('C:/Users/TrungHieu/Desktop/AI4E/Final Report/image/Variable notes.png')
             st.image(image_2)
         if st.checkbox(":blue[Show Raw Data]", False):
            st.subheader('Raw data')
@@ -177,6 +178,7 @@ if selected == 'EDA':
     if st.sidebar.checkbox('**Visualization**'):
         if st.sidebar.checkbox('Count plot'):
             st.divider()
+            st.subheader('Count Plot')
             sns.set(rc={"figure.figsize":(25, 10)})
             column_count = ['Survived', 'Pclass', 'SibSp', 'Parch', 'Embarked']
             column_count_plot = st.sidebar.selectbox("Choose a column to plot count", column_count)
@@ -185,12 +187,15 @@ if selected == 'EDA':
             st.pyplot()
         if st.sidebar.checkbox('Histogram'):
             st.divider()
+            st.subheader('Histogram')
             sns.set(rc={"figure.figsize":(20, 10)})
             column_hist_plot = st.sidebar.selectbox("Choose a column to plot", ['Age', 'Fare'])
             hist_fig = sns.histplot(df[column_hist_plot], kde = True)
             st.pyplot()
         if st.sidebar.checkbox('Factor plot'):
             st.divider()
+            st.subheader('Factor plot')
+            sns.set(rc={"figure.figsize":(10, 10)})
             column_hist_plot = st.sidebar.selectbox("Choose a column to plot", ['Sex','Pclass', 'SibSp', 'Parch', 'Embarked'])
             hue_opt = st.sidebar.selectbox("Optional categorical variables (catplot hue)", [None, 'Sex','Pclass', 'SibSp', 'Parch', 'Embarked'])
             cat_fig = sns.catplot(x = column_hist_plot, y = 'Survived', data = df, kind = 'point', hue  = hue_opt)
@@ -208,6 +213,7 @@ if selected == 'More Visualization':
            st.subheader(':red[Preprocessed data]')
            st.write(data)
     if st.sidebar.checkbox('**3-D Visualization**'):
+        st.divider()
         x_dimension = st.sidebar.selectbox("Choose a column to plot at x-axis:", data.columns)
         y_dimension = st.sidebar.selectbox("Choose a column to plot at y-axis:", data.columns)
         z_dimension = st.sidebar.selectbox("Choose a column to plot at z-axis:", data.columns)
@@ -227,8 +233,10 @@ if selected == 'More Visualization':
             plt.title('Scree plot')
             plt.xlabel('Principal Component')
             plt.ylabel('% Explained Variance')
+            sns.set(rc={"figure.figsize":(30, 10)})
             st.pyplot()
         if st.sidebar.checkbox('Principal Component Analysis in 2D'):
+            st.divider()
             pca_2d = PCA(n_components= 2)
             principalComponents_titanic = pca_2d.fit_transform(data_rescaled)
             principal_df_2d = pd.DataFrame(data = principalComponents_titanic, columns = ['Principal Component 1', 'Principal Component 2'])
@@ -245,6 +253,7 @@ if selected == 'More Visualization':
                             c = color)
             st.pyplot()
         if st.sidebar.checkbox('Principal Component Analysis in 3D'):
+            st.divider()
             pca_3d = PCA(n_components= 3)
             principal_titanic_3D = pca_3d.fit_transform(data_rescaled)
             principal_titanic_3D_df = pd.DataFrame(data = principal_titanic_3D, columns = ['principal component 1', 'principal component 2','principal component 3'])
@@ -257,6 +266,7 @@ if selected == 'More Visualization':
                     title = 'PCA in 3D')
             st.plotly_chart(fig, theme = None)
         if st.sidebar.checkbox('T-SNE in 2D'):
+            st.divider()
             perplexity = st.slider('Perplexity', min_value= 2, max_value = 500)
             tsne_2D  = TSNE(n_components= 2, perplexity= perplexity).fit_transform(data_rescaled)
             tsne_2D_df = pd.DataFrame(tsne_2D, columns = ['Component 1', 'Component 2'])
@@ -264,6 +274,7 @@ if selected == 'More Visualization':
             tsne_2d_fig =  px.scatter(data_frame=  tsne_2D_df, x = 'Component 1', y = 'Component 2', color  = 'labels')
             st.plotly_chart(tsne_2d_fig, theme = None)
         if st.sidebar.checkbox('T-SNE in 3D'):
+            st.divider()
             perplexity = st.slider('Perplexity for 3D', min_value= 2, max_value = 500)
             tsne_3D  = TSNE(n_components= 3, perplexity= perplexity).fit_transform(data_rescaled)
             tsne_3D_df = pd.DataFrame(tsne_3D, columns = ['Component 1', 'Component 2', 'Component 3'])
