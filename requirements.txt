@@ -4,7 +4,7 @@ matplotlib
 plotly
 Pillow
 streamlit-lottie
-streamlit
 streamlit-option-menu
 scikit-learn>=1.2.2
 numpy<2.0.0
+streamlit>=1.32.0
