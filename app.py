@@ -36,7 +36,6 @@ except ImportError:
 #############
 
 st.set_page_config(layout = 'wide')
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
 #=============Function to filter DataFrame=======================
@@ -322,6 +321,7 @@ if selected == 'Prediction':
 
 
       
+
 
 
 
