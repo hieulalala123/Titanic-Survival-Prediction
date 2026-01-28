@@ -23,27 +23,15 @@ import pickle
 ############# Setting streamlit for users ####
 
 try:
-    # Streamlit < 0.65
-    from streamlit.ReportThread import get_report_ctx
-
-except ModuleNotFoundError:
+    # Đối với Streamlit >= 1.12.0
+    from streamlit.runtime.scriptrunner import get_script_run_ctx
+except ImportError:
     try:
-        # Streamlit > 0.65
-        from streamlit.report_thread import get_report_ctx
-
-    except ModuleNotFoundError:
-        try:
-            # Streamlit > ~1.3
-            from streamlit.script_run_context import get_script_run_ctx as get_report_ctx
-
-        except ModuleNotFoundError:
-            try:
-                # Streamlit > ~1.8
-                from streamlit.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
-
-            except ModuleNotFoundError:
-                # Streamlit > ~1.12
-                from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
+        # Đối với Streamlit >= 1.8.0 và < 1.12.0
+        from streamlit.scriptrunner import get_script_run_ctx
+    except ImportError:
+        # Đối với các phiên bản Streamlit cũ hơn
+        from streamlit.report_thread import get_report_ctx as get_script_run_ctx
                 
 #############
 
@@ -334,5 +322,6 @@ if selected == 'Prediction':
 
 
       
+
 
 
