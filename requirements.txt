@@ -5,6 +5,6 @@ plotly
 Pillow
 streamlit-lottie
 streamlit-option-menu
-scikit-learn>=1.5.1
+scikit-learn==1.5.1
 numpy<2.0.0
 streamlit>=1.32.0
